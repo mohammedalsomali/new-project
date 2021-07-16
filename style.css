@@ -33,8 +33,15 @@ html, body {
     width: 25px;
     height: 25px;
     float: left;
+    text-align: center;
+}
+
+#input1 {
+    float: left;
+
+
 }
 
 #input {
-
+    float: right;
 }
