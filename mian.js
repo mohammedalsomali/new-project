@@ -50,7 +50,7 @@ class game_play {
                 if (block.innerHTML != "1") {
                     block.innerHTML = "1";
                     this.counter += 1;
-                    this.uncounter -= 1
+                    this.uncounter -= 1;
                     updateTextInput();
 
                 }
@@ -58,7 +58,22 @@ class game_play {
 
             });
         });
-    }
+        // this.blocks.forEach(block => block.addEventListener('click', function (block) {
+        //     console.log('data-wow value is: ');
+        //     if (block.innerHTML != "1") {
+        //         block.innerHTML = "1";
+        //         this.counter += 1;
+        //         this.uncounter -= 1;
+        //         updateTextInput();
+
+        //     }
+        // }
+
+        // )
+
+        // );
+
+        }
 
 
     updateTextInput() {
@@ -73,10 +88,10 @@ class game_play {
 
 }
 
-window.onload = function () {
-    // var blocks = document.querySelectorAll(".block");
+// window.onload = function () {
+//     // var blocks = document.querySelectorAll(".block");
   
-}
+// }
 
 let gameplay = new game_play();
 gameplay.generatearray();
