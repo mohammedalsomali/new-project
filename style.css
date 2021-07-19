@@ -36,6 +36,12 @@ html, body {
     text-align: center;
 }
 
+.img {
+    height: 25px;
+    width: 25px;
+    float: left;
+}
+
 #input1 {
     float: left;
 
