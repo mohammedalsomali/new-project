@@ -46,14 +46,14 @@ class game_play {
 
 
     afterclick() {
-        this.assignblocks();
+        this.generaterandom();
         // var blocks1 = document.getElementsByClassName('block');
         var uncoverd_counter = 0;
         var coverd_counter = 360;
         var random = this.random;
         Array.prototype.forEach.call(this.blocks1, function (block) {
             block.addEventListener('click', function () {
-                console.log(this.img);
+
                 if (random.includes(parseInt(block.id))) {
                     var img = document.createElement("img");
                     img.classList.add("img");
@@ -66,13 +66,23 @@ class game_play {
                     document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
 
                 }
-                else{
-                    block.innerHTML = '1';
+                else if(random.includes(parseInt(block.id - 1)) ||  random.includes(parseInt(block.id + 1))) {
+                    block.innerHTML = 1 ;
                     uncoverd_counter += 1;
                     coverd_counter -= 1;
                     // console.log(coverd_counter, uncoverd_counter);
                     document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
                     document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+
+                }
+                else {
+                    block.style.backgroundColor = "blue";
+                    uncoverd_counter += 1;
+                    coverd_counter -= 1;
+                    // console.log(coverd_counter, uncoverd_counter);
+                    document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                    document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+
 
                 }
 
@@ -84,27 +94,33 @@ class game_play {
 
 
     // need a function to assing the bombs to blocks
-    assignblocks(){
-        
-        for (var i = 0; i <= 100; i++) {
-            var value = Math.ceil(Math.random() * 1000);
-            if (value > 0  && value < 360){
-                this.random.push(value);
-                var blocks2 = document.getElementById(value);
-            //     console.log(value, blocks2);
+    generaterandom() {
 
-            //     blocks2.innerHTML = "bomb";
-            //     blocks2.style.color = 'transparent';
+        while (this.random.length < 100) {
+            var value = Math.ceil(Math.random() * 1000);
+            if (value > 0 && value < 360 && this.random.includes) {
+                this.random.push(value);
+                // var blocks2 = document.getElementById(value);
+                //     console.log(value, blocks2);
+
+                //     blocks2.innerHTML = "bomb";
+                //     blocks2.style.color = 'transparent';
 
             }
-            
+
         }
-        
-        // console.log(this.random);
-          
+
+        console.log(this.random.length, this.random);
+    }
+
+    // this finction is to assign the values for the blocks next to the bombs
+
+    assignhints(){
 
 
     }
+
+
 
     // need funcction to change the dificulty level of the game by increasing the number of the bombs
     // gameDificulty{
