@@ -54,7 +54,7 @@ class game_play {
         Array.prototype.forEach.call(this.blocks1, function (block) {
             block.addEventListener('click', function () {
 
-                if (random.includes(parseInt(block.id))) {
+                if (random.includes(parseInt(block.id)) && block.innerHTML == '') {
                     var img = document.createElement("img");
                     img.classList.add("img");
                     img.src = 'bomb.png';
@@ -66,8 +66,11 @@ class game_play {
                     document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
 
                 }
-                else if(random.includes(parseInt(block.id - 1)) ||  random.includes(parseInt(block.id + 1))) {
+                else if(random.includes(parseInt(block.id) - 1) ||  random.includes(parseInt(block.id ) + 1)) {
                     block.innerHTML = 1 ;
+                    if (random.includes(parseInt(block.id) - 1) &&  random.includes(parseInt(block.id ) + 1)) {
+                        block.innerHTML = 2;
+                    }
                     uncoverd_counter += 1;
                     coverd_counter -= 1;
                     // console.log(coverd_counter, uncoverd_counter);
@@ -93,6 +96,9 @@ class game_play {
     }
 
 
+
+   
+
     // need a function to assing the bombs to blocks
     generaterandom() {
 
@@ -110,7 +116,7 @@ class game_play {
 
         }
 
-        console.log(this.random.length, this.random);
+        // console.log(this.random.length, this.random);
     }
 
     // this finction is to assign the values for the blocks next to the bombs
