@@ -66,11 +66,17 @@ class game_play {
                     document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
 
                 }
-                else if(random.includes(parseInt(block.id) - 1) ||  random.includes(parseInt(block.id ) + 1)) {
-                    block.innerHTML = 1 ;
-                    if (random.includes(parseInt(block.id) - 1) &&  random.includes(parseInt(block.id ) + 1)) {
-                        block.innerHTML = 2;
+                else if(random.includes(parseInt(block.id) - 1) ||  random.includes(parseInt(block.id ) + 1) || random.includes(parseInt(block.id) - 18) ||  random.includes(parseInt(block.id ) + 18) || random.includes(parseInt(block.id) - 19) ||  random.includes(parseInt(block.id ) + 19) || random.includes(parseInt(block.id) - 17) ||  random.includes(parseInt(block.id ) + 17) ) {
+                    var count = 0;
+                    var list = [1,-1,18,-18,19,-19,17,-17];
+                    for (let i = 0; i < 5; i++){
+                        if ( random.includes(parseInt(block.id) + i)){
+                            count +=1;
+                            console.log(parseInt(block.id) + i);
+                        }
+
                     }
+                    block.innerHTML = count ;
                     uncoverd_counter += 1;
                     coverd_counter -= 1;
                     // console.log(coverd_counter, uncoverd_counter);
@@ -104,7 +110,10 @@ class game_play {
 
         while (this.random.length < 100) {
             var value = Math.ceil(Math.random() * 1000);
-            if (value > 0 && value < 360 && this.random.includes) {
+            if (this.random.includes(value)){
+                value = Math.ceil(Math.random() * 1000)
+            }
+            else if (value > 0 && value < 360) {
                 this.random.push(value);
                 // var blocks2 = document.getElementById(value);
                 //     console.log(value, blocks2);
