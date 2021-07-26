@@ -54,7 +54,8 @@ class game_play {
         Array.prototype.forEach.call(this.blocks1, function (block) {
             block.addEventListener('click', function () {
 
-                if (random.includes(parseInt(block.id)) && block.innerHTML == '') {
+                if (random.includes(parseInt(block.id)) ) {
+                    block.innerHTML = '';
                     var img = document.createElement("img");
                     img.classList.add("img");
                     img.src = 'bomb.png';
@@ -68,21 +69,21 @@ class game_play {
                 }
                 else if(random.includes(parseInt(block.id) - 1) ||  random.includes(parseInt(block.id ) + 1) || random.includes(parseInt(block.id) - 18) ||  random.includes(parseInt(block.id ) + 18) || random.includes(parseInt(block.id) - 19) ||  random.includes(parseInt(block.id ) + 19) || random.includes(parseInt(block.id) - 17) ||  random.includes(parseInt(block.id ) + 17) ) {
                     var count = 0;
-                    var list = [1,-1,18,-18,19,-19,17,-17];
-                    for (let i = 0; i < 5; i++){
-                        if ( random.includes(parseInt(block.id) + i)){
+                    var list = [1,-1,20,-20,19,-19,18,-18];
+                    for (let i = 0; i < 8; i++){
+                        if ( random.includes(parseInt(block.id) + list[i])){
                             count +=1;
-                            console.log(parseInt(block.id) + i);
+                            console.log(block.id, parseInt(block.id) + list[i]);
                         }
 
                     }
-                    block.innerHTML = count ;
+                    block.innerHTML = count;
                     uncoverd_counter += 1;
                     coverd_counter -= 1;
                     // console.log(coverd_counter, uncoverd_counter);
                     document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
                     document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
-
+                    count = 0;
                 }
                 else {
                     block.style.backgroundColor = "blue";

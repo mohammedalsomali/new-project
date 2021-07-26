@@ -18,8 +18,8 @@ html, body {
     background-color: rgb(57, 177, 93);
     height: 500px;
     width: 500px;
-    /* display: flex;
-    flex-wrap: wrap; */
+    /* display: flex; */
+    /* flex-wrap: wrap;  */
     align-items: center; 
     justify-content: center;
     border-style: solid;
@@ -48,6 +48,6 @@ html, body {
 
 }
 
-#input {
-    float: right;
-}
+/* #input {
+    float: left;
+} */
