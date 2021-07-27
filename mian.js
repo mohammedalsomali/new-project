@@ -108,9 +108,21 @@ class game_play {
 
     // need a function to assing the bombs to blocks
     generaterandom() {
+        let limits = document.querySelectorAll(".button");
+        var limit1 = 50;
+        
+        Array.prototype.forEach.call(limits, function (limit) {
+            limit.addEventListener('click', function () {
+                limit.style.backgroundColor = '#4666FF';
+                limit1 = parseInt(limit.value);
+                console.log(limit1);
+                });
+            });
 
-        while (this.random.length < 100) {
+        
+        while (this.random.length < limit1) {
             var value = Math.ceil(Math.random() * 1000);
+            
             if (this.random.includes(value)){
                 value = Math.ceil(Math.random() * 1000)
             }
@@ -126,7 +138,7 @@ class game_play {
 
         }
 
-        // console.log(this.random.length, this.random);
+        console.log(this.random.length, this.random);
     }
 
     // this finction is to assign the values for the blocks next to the bombs
