@@ -106,23 +106,24 @@ class game_play {
                 else {
 
 
-                    // block.style.backgroundColor = "blue";
-                    // uncoverd_counter += 1;
-                    // coverd_counter -= 1;
-                    // // console.log(coverd_counter, uncoverd_counter);
-                    // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                    // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
-                    function recursion(){
-                        var list = [1, -1, 20, -20, 19, -19, 18, -18];
-                        for (let i = 0; i < 8; i++) {
-                            if (random.includes(parseInt(block.id) + list[i])) {
+                    block.style.backgroundColor = "blue";
+                    uncoverd_counter += 1;
+                    coverd_counter -= 1;
+                    // console.log(coverd_counter, uncoverd_counter);
+                    document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                    document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                    // function recursion(){
+                    //     var list = [1, -1, 20, -20, 19, -19, 18, -18];
+                    //     for (let i = 0; i < 8; i++) {
+                    //         if (random.includes(parseInt(block.id) + list[i])) {
+                    //             if ()
                                 
                                 
-                            }
+                    //         }
 
-                        }
+                    //     }
                         
-                    }
+                    // }
 
 
                 }
@@ -138,19 +139,7 @@ class game_play {
    
 
     // need a function to assing the bombs to blocks
-    generaterandom() {
-        let limits = document.querySelectorAll(".button");
-        var limit1 = 50;
-        
-        Array.prototype.forEach.call(limits, function (limit) {
-            limit.addEventListener('click', function () {
-                limit.style.backgroundColor = '#4666FF';
-                limit1 = parseInt(limit.value);
-                console.log(limit1);
-                });
-            });
-
-        
+    generaterandom(limit1 = 50) {
         while (this.random.length < limit1) {
             var value = Math.ceil(Math.random() * 1000);
             
@@ -169,15 +158,15 @@ class game_play {
 
         }
 
-        console.log(this.random.length, this.random);
+        console.log(this.random.length);
     }
 
     // this finction is to assign the values for the blocks next to the bombs
 
-    assignhints(){
+    // assignhints(){
 
 
-    }
+    // }
 
 
 
@@ -201,4 +190,21 @@ let gameplay = new game_play();
 gameplay.generatearray();
 gameplay.afterclick();
 
+function limit(){
+    let limits = document.querySelectorAll(".button");
+        var limit1 = 50;
+        
+        Array.prototype.forEach.call(limits, function (limit) {
+            limit.addEventListener('click', function () {
+                limit.style.backgroundColor = '#4666FF';
+                limit1 = parseInt(limit.value);
+                console.log(limit1);
+                gameplay.generaterandom(limit1);
+                });
+            });
 
+    return limit1
+
+}
+
+        
