@@ -69,15 +69,33 @@ class game_play {
                 }
                 else if(random.includes(parseInt(block.id) - 1) ||  random.includes(parseInt(block.id ) + 1) || random.includes(parseInt(block.id) - 18) ||  random.includes(parseInt(block.id ) + 18) || random.includes(parseInt(block.id) - 19) ||  random.includes(parseInt(block.id ) + 19) || random.includes(parseInt(block.id) - 17) ||  random.includes(parseInt(block.id ) + 17) ) {
                     var count = 0;
-                    var list = [1,-1,20,-20,19,-19,18,-18];
-                    for (let i = 0; i < 8; i++){
-                        if ( random.includes(parseInt(block.id) + list[i])){
-                            count +=1;
-                            console.log(block.id, parseInt(block.id) + list[i]);
+                    if (block.id % 19 == 0 ||  (block.id + 1) % 19 == 0 ) {
+                        var list = [1, 20,-20, -19, 19];
+                        for (let i = 0; i < 8; i++) {
+                            if (random.includes(parseInt(block.id) + list[i])) {
+                                count += 1;
+                                console.log(block.id, parseInt(block.id) + list[i]);
+                            }
+
                         }
 
                     }
-                    block.innerHTML = count;
+                    else {
+                        var list = [1, -1, 20, -20, 19, -19, 18, -18];
+                        for (let i = 0; i < 8; i++) {
+                            if (random.includes(parseInt(block.id) + list[i])) {
+                                count += 1;
+                                console.log(block.id, parseInt(block.id) + list[i]);
+                            }
+
+                        }
+                    }
+                    if (count == 0){
+                        block.style.backgroundColor = "blue";
+                    }
+                    else {
+                        block.innerHTML = count;
+                    }
                     uncoverd_counter += 1;
                     coverd_counter -= 1;
                     // console.log(coverd_counter, uncoverd_counter);
@@ -86,12 +104,25 @@ class game_play {
                     count = 0;
                 }
                 else {
-                    block.style.backgroundColor = "blue";
-                    uncoverd_counter += 1;
-                    coverd_counter -= 1;
-                    // console.log(coverd_counter, uncoverd_counter);
-                    document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                    document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+
+
+                    // block.style.backgroundColor = "blue";
+                    // uncoverd_counter += 1;
+                    // coverd_counter -= 1;
+                    // // console.log(coverd_counter, uncoverd_counter);
+                    // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                    // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                    function recursion(){
+                        var list = [1, -1, 20, -20, 19, -19, 18, -18];
+                        for (let i = 0; i < 8; i++) {
+                            if (random.includes(parseInt(block.id) + list[i])) {
+                                
+                                
+                            }
+
+                        }
+                        
+                    }
 
 
                 }
