@@ -54,109 +54,113 @@ class game_play {
         Array.prototype.forEach.call(this.blocks1, function (block) {
             block.addEventListener('click', function () {
 
-                if (random.includes(parseInt(block.id)) ) {
-                    block.innerHTML = '';
-                    var img = document.createElement("img");
-                    img.classList.add("img");
-                    img.src = 'bomb.png';
-                    block.appendChild(img);
-                    uncoverd_counter += 1;
-                    coverd_counter -= 1;
-                    // console.log(coverd_counter, uncoverd_counter);
-                    document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                    document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                find(parseInt(block.id));
 
-                }
-                else if(random.includes(parseInt(block.id) - 1) ||  random.includes(parseInt(block.id ) + 1) || random.includes(parseInt(block.id) - 18) ||  random.includes(parseInt(block.id ) + 18) || random.includes(parseInt(block.id) - 19) ||  random.includes(parseInt(block.id ) + 19) || random.includes(parseInt(block.id) - 17) ||  random.includes(parseInt(block.id ) + 17) ) {
-                    var count = 0;
-                    if (block.id % 19 == 0 || (block.id + 1) % 19 == 0) {
-                        if (block.id % 19 == 0) {
-                            var list = [1, 20, -18, -19, 19];
-                            for (let i = 0; i < 5; i++) {
-                                if (random.includes(parseInt(block.id) + list[i])) {
-                                    count += 1;
-                                    console.log(block.id, parseInt(block.id) + list[i]);
+                function find(blockid) {
+
+                    if (random.includes(blockid)) {
+                        block.innerHTML = '';
+                        var img = document.createElement("img");
+                        img.classList.add("img");
+                        img.src = 'bomb.png';
+                        block.appendChild(img);
+                        uncoverd_counter += 1;
+                        coverd_counter -= 1;
+                        // console.log(coverd_counter, uncoverd_counter);
+                        document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                        document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+
+                    }
+                    else if (random.includes(blockid - 1) || random.includes(blockid + 1) || random.includes(blockid- 18) || random.includes(blockid + 18) || random.includes(blockid - 19) || random.includes(blockid + 19) || random.includes(blockid - 17) || random.includes(blockid + 17)) {
+                        var count = 0;
+                        if (blockid % 19 == 0 || (blockid + 1) % 19 == 0) {
+                            if (blockid % 19 == 0) {
+                                var list = [1, 20, -18, -19, 19];
+                                for (let i = 0; i < 5; i++) {
+                                    if (random.includes(blockid + list[i])) {
+                                        count += 1;
+                                        console.log(blockid, blockid + list[i]);
+                                    }
+
+                                }
+                            }
+                            else {
+                                var list = [-1, -20, 18, -19, 19];
+                                for (let i = 0; i < 5; i++) {
+                                    if (random.includes(blockid + list[i])) {
+                                        count += 1;
+                                        console.log(blockid, blockid + list[i]);
+                                    }
+
                                 }
 
                             }
+
+
                         }
                         else {
-                            var list = [-1, -20, 18, -19, 19];
-                            for (let i = 0; i < 5; i++) {
-                                if (random.includes(parseInt(block.id) + list[i])) {
+                            var list = [1, -1, 20, -20, 19, -19, 18, -18];
+                            for (let i = 0; i < 8; i++) {
+                                if (random.includes(blockid + list[i])) {
                                     count += 1;
-                                    console.log(block.id, parseInt(block.id) + list[i]);
+                                    // console.log(block.id, parseInt(block.id) + list[i]);
                                 }
 
                             }
-
                         }
 
-
+                        if (count == 0) {
+                            block.style.backgroundColor = "blue";
+                        }
+                        else {
+                            block.innerHTML = count;
+                        }
+                        uncoverd_counter += 1;
+                        coverd_counter -= 1;
+                        // console.log(coverd_counter, uncoverd_counter);
+                        document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                        document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                        count = 0;
                     }
                     else {
-                        var list = [1, -1, 20, -20, 19, -19, 18, -18];
-                        for (let i = 0; i < 8; i++) {
-                            if (random.includes(parseInt(block.id) + list[i])) {
-                                count += 1;
-                                // console.log(block.id, parseInt(block.id) + list[i]);
-                            }
 
-                        }
-                    }
 
-                    if (count == 0){
                         block.style.backgroundColor = "blue";
+                        let list = [1, -1, 20, -20, 19, -19, 18, -18];
+                        // for (let i = 0; i < 8; i++) {
+                        find(blockid + 1);
+                        // }
+                        // uncoverd_counter += 1;
+                        // coverd_counter -= 1;
+                        // // console.log(coverd_counter, uncoverd_counter);
+                        // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                        // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                        // // function recursion(blockid){
+                        // //     if (blockid % 19 == 0 ||  (blockid + 1) % 19 == 0 ) {
+                        // //         let list = [1, 20,-20, -19, 19];
+                        // //         for (let i = 0; i < 8; i++) {
+                        // //             if (random.includes(blockid + list[i])) {
+                        // //                 count += 1;
+                        // //                 console.log(blockid,blockid + list[i]);
+                        // //             }
+
+                        // //         }
+
+                        // //     }
+                        // //     else {
+                        // //         let list = [1, -1, 20, -20, 19, -19, 18, -18];
+                        // //         for (let i = 0; i < 8; i++) {
+                        // //             if (random.includes(blockid + list[i])) {
+                        // //                 count += 1;
+                        // //                 // console.log(block.id, parseInt(block.id) + list[i]);
+                        // //             }
+
+                        // //         }
+                        // //     }
+                        // // }
+
+
                     }
-                    else {
-                        block.innerHTML = count;
-                    }
-                    uncoverd_counter += 1;
-                    coverd_counter -= 1;
-                    // console.log(coverd_counter, uncoverd_counter);
-                    document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                    document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
-                    count = 0;
-                }
-                else {
-
-
-                    block.style.backgroundColor = "blue";
-                    // let list = [1, -1, 20, -20, 19, -19, 18, -18];
-                    // for (let i = 0; i < 8; i++) {
-                    //     if (random.includes(blockid + list[i])) {
-                    //         count += 1;
-                    //     }
-                    uncoverd_counter += 1;
-                    coverd_counter -= 1;
-                    // console.log(coverd_counter, uncoverd_counter);
-                    document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                    document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
-                    // function recursion(blockid){
-                    //     if (blockid % 19 == 0 ||  (blockid + 1) % 19 == 0 ) {
-                    //         let list = [1, 20,-20, -19, 19];
-                    //         for (let i = 0; i < 8; i++) {
-                    //             if (random.includes(blockid + list[i])) {
-                    //                 count += 1;
-                    //                 console.log(blockid,blockid + list[i]);
-                    //             }
-    
-                    //         }
-    
-                    //     }
-                    //     else {
-                    //         let list = [1, -1, 20, -20, 19, -19, 18, -18];
-                    //         for (let i = 0; i < 8; i++) {
-                    //             if (random.includes(blockid + list[i])) {
-                    //                 count += 1;
-                    //                 // console.log(block.id, parseInt(block.id) + list[i]);
-                    //             }
-    
-                    //         }
-                    //     }
-                    // }
-
-
                 }
 
 
