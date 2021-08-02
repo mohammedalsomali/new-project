@@ -127,37 +127,22 @@ class game_play {
 
                         block.style.backgroundColor = "blue";
                         let list = [1, -1, 20, -20, 19, -19, 18, -18];
-                        // for (let i = 0; i < 8; i++) {
-                        find(blockid + 1);
-                        // }
+                        for (let i = 0; i < 8; i++) {
+                            if(random.includes(blockid + list[i])){
+
+                            }
+                            else{
+                                nun = blockid = list[i];
+                                blu = getElementById('nun');
+                                blu.style.backgroundColor = "blue";
+                            }
+                        }
                         // uncoverd_counter += 1;
                         // coverd_counter -= 1;
                         // // console.log(coverd_counter, uncoverd_counter);
                         // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
                         // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
-                        // // function recursion(blockid){
-                        // //     if (blockid % 19 == 0 ||  (blockid + 1) % 19 == 0 ) {
-                        // //         let list = [1, 20,-20, -19, 19];
-                        // //         for (let i = 0; i < 8; i++) {
-                        // //             if (random.includes(blockid + list[i])) {
-                        // //                 count += 1;
-                        // //                 console.log(blockid,blockid + list[i]);
-                        // //             }
-
-                        // //         }
-
-                        // //     }
-                        // //     else {
-                        // //         let list = [1, -1, 20, -20, 19, -19, 18, -18];
-                        // //         for (let i = 0; i < 8; i++) {
-                        // //             if (random.includes(blockid + list[i])) {
-                        // //                 count += 1;
-                        // //                 // console.log(block.id, parseInt(block.id) + list[i]);
-                        // //             }
-
-                        // //         }
-                        // //     }
-                        // // }
+                        
 
 
                     }
@@ -166,7 +151,7 @@ class game_play {
 
             });
         });
-        // console.log(this.blocks1);
+        console.log(this.blocks1);
     }
 
 
@@ -193,7 +178,7 @@ class game_play {
 
         }
 
-        console.log(this.random.length);
+        // console.log(this.random.length);
     }
 
     // this finction is to assign the values for the blocks next to the bombs
