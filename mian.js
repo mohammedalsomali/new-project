@@ -48,30 +48,63 @@ class game_play {
     afterclick() {
         this.generaterandom();
         // var blocks1 = document.getElementsByClassName('block');
+        var cot = 0;
         var uncoverd_counter = 0;
         var coverd_counter = 360;
         var random = this.random;
         Array.prototype.forEach.call(this.blocks1, function (block) {
             block.addEventListener('click', function () {
 
-                find(parseInt(block.id));
 
-                function find(blockid) {
+                    if (random.includes(parseInt(block.id))) {
+                        for (var i in random) {
+                            let id = document.getElementById(random[i]);
+                            console.log(id);
+                            id.innerHTML = '';
+                            var img = document.createElement("img");
+                            img.classList.add("img");
+                            img.src = 'bomb.png';
+                            id.appendChild(img);
+                            uncoverd_counter += 1;
+                            coverd_counter -= 1;
+                            // console.log(coverd_counter, uncoverd_counter);
+                            document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                            document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                        }
+                    }
+                    else if (random.includes(parseInt(block.id) - 1) || random.includes(parseInt(block.id) + 1) || random.includes(parseInt(block.id) - 18) || random.includes(parseInt(block.id) + 18) || random.includes(parseInt(block.id) - 19) || random.includes(parseInt(block.id) + 19) || random.includes(parseInt(block.id) - 20) || random.includes(parseInt(block.id) + 20)) {
+                        check(parseInt(block.id));
+                        
+                    }
 
-                    if (random.includes(blockid)) {
-                        block.innerHTML = '';
-                        var img = document.createElement("img");
-                        img.classList.add("img");
-                        img.src = 'bomb.png';
-                        block.appendChild(img);
-                        uncoverd_counter += 1;
-                        coverd_counter -= 1;
-                        // console.log(coverd_counter, uncoverd_counter);
-                        document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                        document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                    else {
+                        
+                        console.log(block);
+                        block.style.backgroundColor = "blue";
+                        if (cot < 1) {
+                            let list = [1, -1, 20, -20, 19, -19, 18, -18];
+                            for (let i = 0; i < 8; i++) {
+                                if (random.includes(parseInt(block.id) - 1) || random.includes(parseInt(block.id) + 1) || random.includes(parseInt(block.id) - 18) || random.includes(parseInt(block.id) + 18) || random.includes(parseInt(block.id) - 19) || random.includes(parseInt(block.id) + 19) || random.includes(parseInt(block.id) - 20) || random.includes(parseInt(block.id) + 20)) {
+                                    check(parseInt(block.id) + list[i]);
+                                }
+                                else {
+                                    console.log(parseInt(block.id) + list[i]);
+                                    let id = document.getElementById(parseInt(block.id) + list[i]);
+                                    console.log(id);
+                                    id.style.backgroundColor = "blue";
+                                }
+                            }
+                            cot = 1;
+                            // uncoverd_counter += 1;
+                            // coverd_counter -= 1;
+                            // // console.log(coverd_counter, uncoverd_counter);
+                            // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                            // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                        }
+
 
                     }
-                    else if (random.includes(blockid - 1) || random.includes(blockid + 1) || random.includes(blockid- 18) || random.includes(blockid + 18) || random.includes(blockid - 19) || random.includes(blockid + 19) || random.includes(blockid - 17) || random.includes(blockid + 17)) {
+                    function check(blockid) {
                         var count = 0;
                         if (blockid % 19 == 0 || (blockid + 1) % 19 == 0) {
                             if (blockid % 19 == 0) {
@@ -79,7 +112,7 @@ class game_play {
                                 for (let i = 0; i < 5; i++) {
                                     if (random.includes(blockid + list[i])) {
                                         count += 1;
-                                        console.log(blockid, blockid + list[i]);
+                                        // console.log(blockid, blockid + list[i]);
                                     }
 
                                 }
@@ -89,7 +122,7 @@ class game_play {
                                 for (let i = 0; i < 5; i++) {
                                     if (random.includes(blockid + list[i])) {
                                         count += 1;
-                                        console.log(blockid, blockid + list[i]);
+                                        // console.log(blockid, blockid + list[i]);
                                     }
 
                                 }
@@ -110,7 +143,7 @@ class game_play {
                         }
 
                         if (count == 0) {
-                            block.style.backgroundColor = "blue";
+                            block.innerHTML = 0;
                         }
                         else {
                             block.innerHTML = count;
@@ -122,36 +155,12 @@ class game_play {
                         document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
                         count = 0;
                     }
-                    else {
-
-
-                        block.style.backgroundColor = "blue";
-                        let list = [1, -1, 20, -20, 19, -19, 18, -18];
-                        for (let i = 0; i < 8; i++) {
-                            if(random.includes(blockid + list[i])){
-
-                            }
-                            else{
-                                nun = blockid = list[i];
-                                blu = getElementById('nun');
-                                blu.style.backgroundColor = "blue";
-                            }
-                        }
-                        // uncoverd_counter += 1;
-                        // coverd_counter -= 1;
-                        // // console.log(coverd_counter, uncoverd_counter);
-                        // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                        // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
-                        
-
-
-                    }
-                }
+                
 
 
             });
         });
-        console.log(this.blocks1);
+        // console.log(this.blocks1);
     }
 
 
