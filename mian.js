@@ -59,7 +59,7 @@ class game_play {
                     if (random.includes(parseInt(block.id))) {
                         for (var i in random) {
                             let id = document.getElementById(random[i]);
-                            console.log(id);
+                            // console.log(id);
                             id.innerHTML = '';
                             var img = document.createElement("img");
                             img.classList.add("img");
@@ -79,18 +79,22 @@ class game_play {
 
                     else {
                         
-                        console.log(block);
+                        // console.log(block);
                         block.style.backgroundColor = "blue";
                         if (cot < 1) {
                             let list = [1, -1, 20, -20, 19, -19, 18, -18];
                             for (let i = 0; i < 8; i++) {
-                                if (random.includes(parseInt(block.id) - 1) || random.includes(parseInt(block.id) + 1) || random.includes(parseInt(block.id) - 18) || random.includes(parseInt(block.id) + 18) || random.includes(parseInt(block.id) - 19) || random.includes(parseInt(block.id) + 19) || random.includes(parseInt(block.id) - 20) || random.includes(parseInt(block.id) + 20)) {
+                                // console.log(parseInt(block.id) + list[i] * 2, block.id);
+                                let w = parseInt(block.id) + list[i] * 2;
+                                if (random.includes(w)){
+                                    console.log(parseInt(block.id) + list[i]);
                                     check(parseInt(block.id) + list[i]);
+                                    console.log(parseInt(block.id) + list[i]);
                                 }
                                 else {
-                                    console.log(parseInt(block.id) + list[i]);
+                                    // console.log(parseInt(block.id) + list[i]);
                                     let id = document.getElementById(parseInt(block.id) + list[i]);
-                                    console.log(id);
+                                    // console.log(id);
                                     id.style.backgroundColor = "blue";
                                 }
                             }
@@ -106,6 +110,7 @@ class game_play {
                     }
                     function check(blockid) {
                         var count = 0;
+                        console.log(blockid);
                         if (blockid % 19 == 0 || (blockid + 1) % 19 == 0) {
                             if (blockid % 19 == 0) {
                                 var list = [1, 20, -18, -19, 19];
@@ -141,12 +146,12 @@ class game_play {
 
                             }
                         }
-
+                        var blo = document.getElementById(blockid);
                         if (count == 0) {
-                            block.innerHTML = 0;
+                            blo.style.backgroundColor = 'blue';
                         }
                         else {
-                            block.innerHTML = count;
+                            blo.innerHTML = count;
                         }
                         uncoverd_counter += 1;
                         coverd_counter -= 1;
