@@ -84,33 +84,36 @@ class game_play {
                         if (cot < 1) {
                             let list = [1, -1, 20, -20, 19, -19, 18, -18];
                             for (let i = 0; i < 8; i++) {
-                                // console.log(parseInt(block.id) + list[i] * 2, block.id);
-                                let w = parseInt(block.id) + list[i] * 2;
-                                if (random.includes(w)){
-                                    console.log(parseInt(block.id) + list[i]);
-                                    check(parseInt(block.id) + list[i]);
-                                    console.log(parseInt(block.id) + list[i]);
-                                }
-                                else {
-                                    // console.log(parseInt(block.id) + list[i]);
-                                    let id = document.getElementById(parseInt(block.id) + list[i]);
-                                    // console.log(id);
-                                    id.style.backgroundColor = "blue";
+                                for (let j = 0; j < 8; j++) {
+                                    // console.log(parseInt(block.id) + list[i] * 2, block.id);
+                                    let w = parseInt(block.id) + (list[i] + list[j]);
+                                    if (random.includes(w) || random.includes(w + 1) || random.includes(w - 1)) {
+                                        console.log(parseInt(block.id));
+                                        check(parseInt(block.id) + list[i]);
+                                        console.log(parseInt(block.id) + list[i], list[i]);
+
+                                    }
+                                    else {
+                                        // console.log(parseInt(block.id) + list[i]);
+                                        let id = document.getElementById(parseInt(block.id) + list[i]);
+                                        // console.log(id);
+                                        id.style.backgroundColor = "blue";
+                                    }
                                 }
                             }
                             cot = 1;
-                            // uncoverd_counter += 1;
-                            // coverd_counter -= 1;
-                            // // console.log(coverd_counter, uncoverd_counter);
-                            // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                            // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
+                            uncoverd_counter += 1;
+                            coverd_counter -= 1;
+                            // console.log(coverd_counter, uncoverd_counter);
+                            document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
+                            document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
                         }
 
 
                     }
                     function check(blockid) {
                         var count = 0;
-                        console.log(blockid);
+                        // console.log(blockid);
                         if (blockid % 19 == 0 || (blockid + 1) % 19 == 0) {
                             if (blockid % 19 == 0) {
                                 var list = [1, 20, -18, -19, 19];
