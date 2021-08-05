@@ -47,16 +47,34 @@ html, body {
 
 #input1 {
     float: left;
+    color: chartreuse;
+    background-color: darkslategray;
 
 
 }
 
 #input {
+    /* position: relative; */
     float: right;
+    color: chartreuse;
+    background-color: darkslategray;
 }
 
 .outer {
     width: 492px;
     height: 510px;
     border-style: solid;
+}
+
+
+.button {
+    border: 0px;
+    margin: 0px;
+    float: inline-start;
+    background-color: red;
+}
+
+#button12 {
+    background-color: green;
+
 }
