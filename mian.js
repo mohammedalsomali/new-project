@@ -52,6 +52,7 @@ class game_play {
 
 
                     if (random.includes(parseInt(block.id))) {
+                        alert("game over you hit a mine")
                         for (var i in random) {
                             let id = document.getElementById(random[i]);
                             // console.log(id);
@@ -244,7 +245,7 @@ Array.prototype.forEach.call(limits, function (limit) {
 
 function new1(){
     gameplay.clearAll();
-    gameplay.generaterandom();
+    gameplay.generaterandom(limit1);
 
 }
 
