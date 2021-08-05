@@ -203,9 +203,7 @@ class game_play {
         
         
         this.container.textContent = '';
-        while (this.random > 0) {
-            this.random.pop();
-        }
+        this.random.length = 0;
         console.log(this.random);
         // console.log(this.blocks1);
 
