@@ -49,9 +49,11 @@ class game_play {
         var random = this.random;
         Array.prototype.forEach.call(this.blocks1, function (block) {
             block.addEventListener('click', function () {
+                document.getElementById("input1").value = "Timer: " 
+                
+                 start(); 
 
-
-                    if (random.includes(parseInt(block.id))) {
+                if (random.includes(parseInt(block.id))) {
                         alert("game over you hit a mine")
                         for (var i in random) {
                             let id = document.getElementById(random[i]);
@@ -64,8 +66,6 @@ class game_play {
                             // uncoverd_counter += 1;
                             // coverd_counter -= 1;
                             // // console.log(coverd_counter, uncoverd_counter);
-                            // document.getElementById("input1").value = "number of uncoverd boxes " + uncoverd_counter;
-                            // document.getElementById("input").value = "number of coverd boxes " + coverd_counter;
                         }
                     }
                     else if (random.includes(parseInt(block.id) - 1) || random.includes(parseInt(block.id) + 1) || random.includes(parseInt(block.id) - 18) || random.includes(parseInt(block.id) + 18) || random.includes(parseInt(block.id) - 19) || random.includes(parseInt(block.id) + 19) || random.includes(parseInt(block.id) - 20) || random.includes(parseInt(block.id) + 20)) {
@@ -181,16 +181,16 @@ class game_play {
         }
         // console.log(this.random.length);
         this.generatearray();
+        document.getElementById("input").value = "there are " + limit1 + " mines ";
+
+        
        
 
     }
 
     // this finction is to assign the values for the blocks next to the bombs
 
-    // assignhints(){
-
-
-    // }
+    
 
 
 
@@ -226,7 +226,7 @@ var limit1 = 50;
 Array.prototype.forEach.call(limits, function (limit) {
     limit.addEventListener('click', function () {
         gameplay.clearAll();
-        
+        stop(); // stoping the previous counting (if any)
         limits[0].style.backgroundColor = 'red';
         limits[1].style.backgroundColor = 'red';
         limits[2].style.backgroundColor = 'red';
@@ -241,11 +241,32 @@ Array.prototype.forEach.call(limits, function (limit) {
 
 
 
+function changeValue() {
+    document.getElementById("input1").value = "Timer: "  + ++value + " s";
+}
+let w = 0;
+
+var timerInterval = null;
+
+function start() {
+    if (w == 0) {
+        value = 0;
+        timerInterval = setInterval(changeValue, 1000);
+        w = 1;
+    }
+}
+var stop = function () {
+    w = 0;
+    clearInterval(timerInterval);
+}
+
+
 
 
 function new1(){
     gameplay.clearAll();
     gameplay.generaterandom(limit1);
+    stop();
 
 }
 
